@@ -1,8 +1,8 @@
-require('dotenv').config();
-const http = require('http');
-const app = require('./app');
+import 'dotenv/config';
+import http from 'http';
+import app from './app';
 
-const port = process.env.PORT;
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : undefined;
 const hostname  = process.env.HOSTNAME;
 
 

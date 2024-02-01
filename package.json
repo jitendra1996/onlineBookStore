@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build:css":"postcss public/css/tailwind.css -o public/css/styles.css -w",
-    "dev":"nodemon server.js"
+    "build:css": "postcss public/css/tailwind.css -o public/css/styles.css -w",
+    "build":"tsc",
+    "dev": "nodemon --exec ts-node-dev ./src/server.ts",
+    "start": "npm run build && node dist/server.js"
   },
   "author": "jitendra kumar",
   "license": "ISC",
@@ -19,6 +21,10 @@
     "tailwindcss": "^3.4.1"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.16",
+    "nodemon": "^3.0.3",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.3.3"
   }
 }

@@ -1,6 +1,7 @@
 import {Schema,model} from 'mongoose';
-import { IAddress, IPayment,IUser } from '../utils/interfaces/user.models.interfaces.utils';
+import { IAddress, IPayment,IUser } from '../utils/interfaces/userModels.interfaces.utils';
 import { UserRoles } from '../utils/enums/user.models.enums.utils';
+import { ValidationError } from '../utils/errors/validationError.errors.utils';
 
 
 const userSchema = new Schema<IUser>({
@@ -61,7 +62,7 @@ userSchema.pre('save', function (next) {
     // Custom email validation logic
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     if (!emailRegex.test(`${user.email}`)) {
-      return next(new Error('Invalid email format'));
+      throw new ValidationError('Invalid email format');
     }
   
     // If validation passes, call 'next' to continue with the save process

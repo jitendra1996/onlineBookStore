@@ -4,7 +4,7 @@ import { UserRoles } from '../utils/enums/user.models.enums.utils';
 import { ValidationError } from '../utils/errors/validationError.errors.utils';
 
 
-const userSchema = new Schema<IUser>({
+const UserSchema = new Schema<IUser>({
     username:{
         type: String,
         required:true,
@@ -15,6 +15,14 @@ const userSchema = new Schema<IUser>({
         unique:true,
         trim: true,
         lowercase: true,
+    },
+    gender:{
+        type:String,
+        required:true,
+    },
+    dateOfBirth:{
+        type:Date,
+        required:true,
     },
     isEmailVerified:{
         type:Boolean,
@@ -55,7 +63,7 @@ const userSchema = new Schema<IUser>({
 },{timestamps:true});
 
 // Pre-save middleware for email validation
-userSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {
     // 'this' refers to the current user document being saved
     const user = this as IUser;
   
@@ -69,4 +77,4 @@ userSchema.pre('save', function (next) {
     next();
   });
 
-export const UserModel = model<IUser>('User', userSchema);
+export const UserModel = model<IUser>('User', UserSchema);

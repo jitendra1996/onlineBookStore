@@ -30,5 +30,7 @@ export interface IUser extends Document {
     isMobileVerified?:Boolean;
     address:IAddress[];
     paymentDetails?:IPayment[];
-    userRole:UserRoles
+    userRole:UserRoles;
+    gender:String;
+    dateOfBirth:Date;
 }
